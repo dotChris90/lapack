@@ -31,8 +31,9 @@ before_build:
 
 build_script:
   - cmake --build .
+after_build:
+  - ps: ls -Recurse C:\projects\*.dll | % {$_.FullName}
 
 test_script:
   - ctest -j2
-after_test:
-  - ps: ls -Recurse C:\projects\lapack\*.dll | % {$_.FullName}
+
