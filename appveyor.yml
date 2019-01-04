@@ -25,7 +25,7 @@ install:
   - set "CPATH=%CONDA_INSTALL_LOCN%\Library\include;%CPATH%"
 
 before_build:
-  - ps: if (-Not (Test-Path .\build)) { mkdir build }
+  - ps: if (-Not (Test-Path .\build)) { mkdir build } else { Remove-Item .\build -Force -Recurse; mkdir build}
   - cd build
   - cmake -G "NMake Makefiles JOM" -DCMAKE_Fortran_COMPILER=flang -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON ..
 
