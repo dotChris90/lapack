@@ -36,3 +36,5 @@ after_build:
 
 test_script:
   - ctest -j2
+after_test:
+  - ps: ls -Recurse C:\projects\lapack\build\ | % {$_.FullName}
