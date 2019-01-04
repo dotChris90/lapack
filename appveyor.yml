@@ -32,8 +32,11 @@ before_build:
 build_script:
   - cmake --build .
 after_build:
-  - ps: ls -Recurse C:\projects\*.dll | % {$_.FullName}
+  - pwsh: "&($env:APPVEYOR_BUILD_FOLDER + '/compressLibs.ps1')"
 
+artifacts:
+  - path: artLibs.zip
+    name: LAPACK_DLLS
 test_script:
   - ctest -j2
 
